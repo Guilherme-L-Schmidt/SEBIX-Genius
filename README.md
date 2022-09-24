@@ -11,5 +11,6 @@ The included `Genius_code.ino` is responsible for the game functions, and must b
 - 2 10kΩ resistors
 - 4 1kΩ resistors
 - 4 buttons
+- buzzer
 
-![Tinkercad model](https://i.imgur.com/DyXeDVv.png)
+![Tinkercad model](https://i.imgur.com/PLmHQLA.png)
