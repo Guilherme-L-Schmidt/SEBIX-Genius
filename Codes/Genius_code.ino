@@ -12,6 +12,7 @@ void setup()
   pinMode(1, OUTPUT);
   pinMode(2, OUTPUT);
   pinMode(3, OUTPUT);
+  pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
   
   // Sets input pins
@@ -40,10 +41,12 @@ void loop()
     for (int i = 0; i < size; i++) {
       // Chooses random number for each position
       order[i] = rand() % 4;
-      // Shines the corresponding LED
+      // Shines the corresponding LED, and makes sound
       digitalWrite(order[i], HIGH);
+      tone(12, 150 + 50*order[i]);
       delay(1000);
       digitalWrite(order[i], LOW);
+      noTone(12);
       delay(200);
     }
     // Starts game
@@ -61,9 +64,11 @@ void loop()
           // If received input is correct, shine corresponding LED and jumps to next check
           if (i == order[pos]) {
             pos++;
+            tone(12, 150 + i*50);
             digitalWrite(i, HIGH);
             delay(200);
             digitalWrite(i, LOW);
+            noTone(12);
           }
           // If input is incorrect, shine all LEDs and restart game
           else {
@@ -71,11 +76,13 @@ void loop()
             digitalWrite(1, HIGH); 
             digitalWrite(2, HIGH); 
             digitalWrite(3, HIGH);
-            delay(2000);
+            tone(12, 100);
+            delay(1500);
             digitalWrite(0, LOW); 
             digitalWrite(1, LOW); 
             digitalWrite(2, LOW); 
             digitalWrite(3, LOW);
+            noTone(12);
             // Redefine size and restarts game
             size = 3;
             play = false;
@@ -93,5 +100,5 @@ void loop()
     free(order);
   }
   // Small delay
-  delay(10);
+  delay(1000);
 }
